@@ -20,6 +20,8 @@ import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import lombok.extern.slf4j.Slf4j;
 import ryu.assign.batch.model.Member;
@@ -37,9 +39,10 @@ public class ExampleJobConfig {
     @Autowired public StepBuilderFactory stepBuilderFactory;
     @Autowired public EntityManagerFactory entityManagerFactory;
 
+    
     @Bean
     public Job ExampleJob() throws Exception {
-
+    	log.info("실행중");
         Job exampleJob = jobBuilderFactory.get("exampleJob")
                 .start(Step())
                 .build();
